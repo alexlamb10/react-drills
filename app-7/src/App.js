@@ -1,24 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import logo from "./logo.svg";
+import List from "./components/List";
+import NewTask from "./components/NewTask";
+
+import "./App.css";
 
 function App() {
+
+  const [userInput, setUserInput] = useState('')
+  const [list, setList] = useState([])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NewTask
+        setList={setList}
+        setUserInput={setUserInput}
+        list={list}
+        userInput={userInput}
+      />
+      <List list={list}/>
     </div>
   );
 }
