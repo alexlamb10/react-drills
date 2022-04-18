@@ -2,17 +2,22 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-function Products() {
+function Products(index) {
   const [pokemon, setPokemon] = useState([]);
   axios.get("https://pokeapi.co/api/v2/pokemon/").then((res) => {
     setPokemon(res.data.results);
   });
 
   let items = pokemon.map((poke, index) => {
+    index = index+1
     return (
-      <Link key={index} to={`/details/${index}`}>
-        <h3>{poke.name}</h3>
-      </Link>
+      <div>
+        <Link 
+        key={index}
+        to={{pathname: `/details/${index}`}}>
+          <h3>{poke.name}</h3>
+        </Link>
+      </div>
     );
   });
 
